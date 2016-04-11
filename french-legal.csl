@@ -22,7 +22,7 @@
   </locale>
   <macro name="authority-sort">
     <choose>
-      <if type="legal_case">
+      <if type="caselaw">
         <choose>
           <if variable="authority">
             <text variable="authority"/>
@@ -32,17 +32,20 @@
           </else>
         </choose>
       </if>
-      <else-if type="bill">
+      <else-if type="law">
+        <!-- CHECK what this is -->
         <!-- move statutes to the bottom -->
         <text value="ZZZZ"/>
       </else-if>
       <else>
+        <!-- CHECK what this is -->
         <!-- move all but cases to the top -->
         <text value="AAAA"/>
       </else>
     </choose>
   </macro>
   <macro name="contributors-sort">
+    <!-- CHECK what this is -->
     <names variable="editor">
       <name name-as-sort-order="all" and="text" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
       <label form="verb-short" prefix=", "/>
@@ -56,10 +59,10 @@
     <text macro="authority-sort"/>
     <text macro="contributors-sort" suffix=" "/>
   </macro>
-  <macro name="noauthor">
+  <!--macro name="noauthor">
     <text value="OV"/>
-  </macro>
-  <macro name="authors">
+  </macro-->
+  <macro name="authors"><!-- CHECK what this is -->
     <names variable="author" font-style="italic">
       <name delimiter="/" name-as-sort-order="all" form="short" delimiter-precedes-last="always" initialize-with="."/>
       <et-al term="et-al" font-style="italic"/>
@@ -70,7 +73,7 @@
       </substitute>
     </names>
   </macro>
-  <macro name="editors">
+  <macro name="editors"><!-- CHECK what this is -->
     <names variable="editor" font-style="italic">
       <name delimiter="/" name-as-sort-order="all" form="short" delimiter-precedes-last="always" initialize-with="."/>
       <et-al term="et-al" font-style="italic"/>
@@ -80,24 +83,41 @@
   <citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true" givenname-disambiguation-rule="all-names-with-initials" disambiguate-add-givenname="true">
     <layout suffix="." delimiter="; ">
       <choose>
-        <if type="legal_case">
+        <if type="caselaw">
           <choose>
-            <if variable="authority issued number" match="all">
-              <text variable="authority" suffix=" "/>
+            <if variable="authority authority-section issued title-short number" match="all">
+              <text variable="authority" suffix=", "/>
+              <text variable="authority-section" suffix= ", "/>
               <date variable="issued" suffix=" ">
-                <date-part name="day" form="numeric-leading-zeros" suffix="."/>
-                <date-part name="month" form="numeric-leading-zeros" suffix="."/>
+                <date-part name="day" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="month" form="numeric-leading-zeros" suffix=" "/>
                 <date-part name="year" form="long" suffix=","/>
               </date>
+              <text variable="title-short" font-style="italic" suffix=", "/>
               <text variable="number"/>
             </if>
-            <else>
-              <!-- fallback: since RIS format does not have a court (authority) variable -->
-              <text variable="title"/>
-            </else>
+            <else-if variable="authority issued title-short number" match="all">
+              <text variable="authority" suffix=", "/>
+              <date variable="issued" suffix=" ">
+                <date-part name="day" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="month" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="year" form="long" suffix=","/>
+              </date>
+              <text variable="title-short" font-style="italic" suffix=", "/>
+              <text variable="number"/>
+            </else-if>
+            <else-if variable="authority issued title-short" match="all">
+              <text variable="authority" suffix=", "/>
+              <date variable="issued" suffix=" ">
+                <date-part name="day" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="month" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="year" form="long" suffix=","/>
+              </date>
+              <text variable="title-short" font-style="italic"/>
+            </else-if>
           </choose>
         </if>
-        <else-if type="bill">
+        <else-if type="law"><!-- CHECK this -->
           <choose>
             <if variable="container-title section" match="all">
               <text variable="section" suffix=" "/>
@@ -287,25 +307,41 @@
     </sort>
     <layout>
       <choose>
-        <if type="legal_case">
+        <if type="caselaw">
           <choose>
-            <if variable="authority issued number" match="all">
-              <text variable="authority" suffix=" "/>
+            <if variable="authority authority-section issued title number" match="all">
+              <text variable="authority" suffix=", "/>
+              <text variable="authority-section" suffix= ", "/>
               <date variable="issued" suffix=" ">
-                <date-part name="day" form="numeric-leading-zeros" suffix="."/>
-                <date-part name="month" form="numeric-leading-zeros" suffix="."/>
+                <date-part name="day" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="month" form="numeric-leading-zeros" suffix=" "/>
                 <date-part name="year" form="long" suffix=","/>
               </date>
+              <text variable="title" font-style="italic" suffix=", "/>
               <text variable="number"/>
             </if>
-            <else>
-              <!-- fallback: since RIS format does not have a court (authority) variable -->
-              <text variable="title"/>
-              <text variable="title"/>
-            </else>
+            <else-if variable="authority issued title number" match="all">
+              <text variable="authority" suffix=", "/>
+              <date variable="issued" suffix=" ">
+                <date-part name="day" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="month" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="year" form="long" suffix=","/>
+              </date>
+              <text variable="title" font-style="italic" suffix=", "/>
+              <text variable="number"/>
+            </else-if>
+            <else-if variable="authority issued title" match="all">
+              <text variable="authority" suffix=", "/>
+              <date variable="issued" suffix=" ">
+                <date-part name="day" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="month" form="numeric-leading-zeros" suffix=" "/>
+                <date-part name="year" form="long" suffix=","/>
+              </date>
+              <text variable="title" font-style="italic"/>
+            </else-if>
           </choose>
         </if>
-        <else-if type="bill">
+        <else-if type="law">
           <text value=" "/>
         </else-if>
         <else-if type="article-journal">
