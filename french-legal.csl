@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="note" default-locale="de-AT">
-  <!-- This style was edited with the Visual CSL Editor (http://editor.citationstyles.org/visualEditor/) -->
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="note" default-locale="fr-FR">
+  <!-- This style was forked from https://github.com/citation-style-language/styles/blo/master/austrian-legal.csl by andreas.geyrecker@lexisnexis.at -->
   <info>
-    <title>Austrian Legal (German - Austria)</title>
-    <id>http://www.zotero.org/styles/austrian-legal</id>
-    <link href="http://www.zotero.org/styles/austrian-legal" rel="self"/>
-    <link href="http://www.lexisnexis.at/service/training-und-hilfe/zitieren.aspx" rel="documentation"/>
+    <title>Style de citation juridique français</title>
+    <id>https://exegetes.eu.org/outils/csl/</id>
+    <link href="https://exegetes.eu.org/outils/csl/" rel="documentation"/>
     <author>
-      <name>LexisNexis</name>
-      <email>andreas.geyrecker@lexisnexis.at</email>
+      <name>Hugo Roy</name>
+      <email>hugo+github-french-legal-dot-csl@ampoliros.net</email>
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <summary>The Austrian Legal Citation style (based on AZR - Abkürzungs- und Zitierregeln)</summary>
-    <published>2012-05-31T00:00:00+02:00</published>
-    <updated>2015-07-25T13:49:55+00:00</updated>
+    <summary>French legal citation style for writing court briefs, mainly</summary>
+    <published>2016-04-12T00:00:00+02:00</published>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
-  <locale xml:lang="de-AT">
+  <locale xml:lang="fr-FR">
     <terms>
-      <term name="et-al">et al</term>
+      <term name="et-al">et a.</term>
     </terms>
   </locale>
   <macro name="authority-sort">
